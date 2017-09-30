@@ -160,7 +160,7 @@ char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3)
         if(j == 25)
             deslocaRotor(rot3,1);
 
-    msg_cifrada[k] = encontraCrifra(msg_cifrada[k]);
+    msg_cifrada[k] = encontraCrifra(msg_cifrada[k],veta,vetA,rot1,rot2,rot3);
     k++;
     }
 
