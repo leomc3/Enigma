@@ -73,7 +73,7 @@ char* deslocaRotor(char* vet,int desloc)
 void ordemRotor(char* vet1,char* vet2,char* vet3)
 {
     int i=0,j=0,random1,random2,random3;
-    char* vetAux1,* vetAux2,* vetAux3;
+ //   char* vetAux1,* vetAux2,* vetAux3;
     char* vetsort[3]; // vetor para atribuir o rotor;
 
 
@@ -143,30 +143,6 @@ char* geraCifraRotor()
 }
 
 
-char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3,char* veta,char*vetA, int tamMensagem)
-{
-    int i =0,j=0,k=0;
-    char* msg_cifrada;
-    msg_cifrada = (char)malloc(sizeof(char)*tamMensagem);
-    while(i <= tamMensagem)
-    {
-        i = (i%TAM_ROTOR);
-        deslocaRotor(rot1,1);
-        if (i == 25)
-        {
-            deslocaRotor(rot2,1);
-            j = (j%26);
-        }
-        if(j == 25)
-            deslocaRotor(rot3,1);
-
-    msg_cifrada[k] = encontraCrifra(msg_clara[k],veta,vetA,rot1,rot2,rot3);
-    k++;
-    }
-
-    return &msg_cifrada;
-}
-
 
 char encontraCrifra(char letra, char* veta, char* vetA, char* rot1,char* rot2,char* rot3)
 {
@@ -184,6 +160,48 @@ char encontraCrifra(char letra, char* veta, char* vetA, char* rot1,char* rot2,ch
 
     return elem_pos3;
 }
+
+
+char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3,char* veta,char*vetA, int tamMensagem)
+{
+    int i =0,j=0,k=0;
+    char* msg_cifrada;
+    msg_cifrada = (char)malloc(sizeof(char)*tamMensagem);
+
+
+    int pos1,pos2,pos3;
+    char *elem_pos1,*elem_pos2,*elem_pos3;
+
+
+    while(i <= tamMensagem)
+    {
+        i = (i%TAM_ROTOR);
+        deslocaRotor(rot1,1);
+        if (i == 25)
+        {
+            deslocaRotor(rot2,1);
+            j = (j%26);
+        }
+        if(j == 25)
+            deslocaRotor(rot3,1);
+
+    pos1 = posVet(veta,msg_clara[i]);
+    elem_pos1 = rot1[pos1];
+
+    pos2 = posVet(rot1,elem_pos1);
+    elem_pos2 = rot2[pos2];
+
+    pos3 = posVet(rot2,elem_pos2);
+    elem_pos3 = rot2[pos3];
+
+
+    msg_cifrada[k] = elem_pos3;
+    k++;
+    }
+
+    return msg_cifrada;
+}
+
 
 
 
@@ -268,6 +286,7 @@ int main()
     tamMensagem = tamMsg(&Mensagem);
 
     char* msg_cifrada = cifradorEnigma(Mensagem, rot1,rot2,rot3,veta,vetA,tamMensagem);
+    printf("\nMensagem cifrada:\n");
     exibeVet(msg_cifrada);
     getchar();
     return 0;
