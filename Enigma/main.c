@@ -73,11 +73,8 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
 {
     int i=0,j=0,random1,random2,random3;
     char* vetAux1,* vetAux2,* vetAux3;
-    char* vetsort[2]; // vetor para atribuir o rotor;
+    char* vetsort[3]; // vetor para atribuir o rotor;
 
-    vetsort[0]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    vetsort[1]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    vetsort[2]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
 
     vetsort[0]=vet1;
     vetsort[1]=vet2;
@@ -92,9 +89,10 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
     printf("\n%d",random1);
     printf("\n%d",random2);
     printf("\n%d",random3);
-    vet1 = vetsort[0];
-    vet2 = vetsort[1];
-    vet3 = vetsort[2]; // ERRO AQUI.
+
+    vet1 = vetsort[random1];
+    vet2 = vetsort[random2];
+    vet3 = vetsort[random3]; // ERRO AQUI.
 
     exibeRotores(vet1,vet2,vet3);
 
