@@ -3,9 +3,9 @@
 #include <time.h>
 
 #define TAM_ROTOR 26
-#define DESLOC1 22
-#define DESLOC2 7
-#define DESLOC3 18
+#define DESLOC1 2
+#define DESLOC2 5
+#define DESLOC3 7
 
 
     /*65 -> A,
@@ -17,7 +17,7 @@
 void exiveVet(char* aux)
 {
     int i=0;
-    printf("\n");
+    //printf("\n");
      for(i=0;i<TAM_ROTOR;i++)
         printf("%c",aux[i]);
     return;
@@ -62,7 +62,7 @@ char* deslocaRotor(char* vet,int desloc)
     printf("\nRotor 2:");
      exiveVet(vet2);
 
-    printf("\n Rotor 3:");
+    printf("\nRotor 3:");
      exiveVet(vet3);
      return;
  }
@@ -142,6 +142,7 @@ int main()
 
 
     ordemRotor(rot1,rot2,rot3);
+
 
 
     getchar();
