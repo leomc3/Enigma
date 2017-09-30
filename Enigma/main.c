@@ -110,7 +110,7 @@ int tamMsg(char *msg)
 int posVet(char* vet, char letra)
 {
     int i = 0;
-    while (strcmp(vet[i],letra) == 0)
+    while (vet[i] != letra)
         i++;
     printf("%d",i);
     return i;
@@ -189,8 +189,8 @@ int main()
 
 
     char letra = 'd';
-    //int posicao = posVet(rot2,letra);
-    //printf("\npos = %d",posicao);
+    int posicao = posVet(veta,letra);
+    printf("\npos = %d\n",posicao);
 
 
     //teste
@@ -198,7 +198,7 @@ int main()
     msg = 'Oi';
     int tama;
     tama = tamMsg(&msg);
-    printf("%d",tama);
+    printf("\ntamanho msg = %d\n",tama);
 
     char* SubstituicaoRotor1 =  (char)malloc(sizeof(char)*TAM_ROTOR);
     char* SubstituicaoRotor2 =  (char)malloc(sizeof(char)*TAM_ROTOR);
