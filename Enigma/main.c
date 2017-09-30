@@ -15,13 +15,11 @@
      122-> z;
     */
 
-
-
 void exibeVet(char* aux)
 {
     int i=0;
     //printf("\n");
-     for(i=0; (i<TAM_ROTOR )&&( i='\0');i++)
+     for(i=0; (i<TAM_ROTOR )&&( aux[i]!='\0');i++)
         printf("%c",aux[i]);
     return;
 }
@@ -105,7 +103,7 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
 int tamMsg(char *msg)
 {
    int i;
-   for (i = 0; msg[i] != '\0'; ++i) ;
+   for (i = 0; msg[i] != '\0'; i++) ;
    return i;
 }
 
@@ -120,36 +118,36 @@ int posVet(char* vet, char letra)
 
 char* geraCifraRotor()
 {
-	char letraAux;
-	int i;
-	int troca;
+    char letraAux;
+    int i;
+    int troca;
 
-	char* vetCifra =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-	for(i=0; i< 26; i++)      // cria sequencia de a - z
-	{
-		vetCifra[i] = 97+i;   //97 o decimal ASCII de "a", indo até 97+25
-	}
+    char* vetCifra =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    for(i=0; i< 26; i++)      // cria sequencia de a - z
+    {
+        vetCifra[i] = 97+i;   //97 o decimal ASCII de "a", indo até 97+25
+    }
 
 
 
     exibeVet(vetCifra);
-	printf("\n\n");
-	for(i=0; i< 26; i++)      //embaralha a sequencia anterior
-	{
-		troca = rand()%26;
-		letraAux = vetCifra[i];
-		vetCifra[i] = vetCifra[troca];
-		vetCifra[troca] = letraAux;
-	}
+    printf("\n\n");
+    for(i=0; i< 26; i++)      //embaralha a sequencia anterior
+    {
+        troca = rand()%26;
+        letraAux = vetCifra[i];
+        vetCifra[i] = vetCifra[troca];
+        vetCifra[troca] = letraAux;
+    }
 
-	return vetCifra;
+    return vetCifra;
 }
 
 
 
 char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3,char* veta,char*vetA, int tamMensagem)
 {
-	int pos1,pos2,pos3;
+    int pos1,pos2,pos3;
     char elem_pos1,elem_pos2,elem_pos3;
 
     int i =0,j=0,k=0;
@@ -172,23 +170,33 @@ char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3,char* vet
         {
             deslocaRotor(rot3,1);
             k=0;
-    	}
-        pos1 = posVet(veta, &msg_clara[i]);
-    	elem_pos1 = rot1[pos1];
+        }
 
-		printf("\n%c", rot1[pos1]);
 
-   	 	pos2 = posVet(rot1, elem_pos1);
-    	elem_pos2 = rot2[pos2];
 
-    	printf("\n%c", rot2[pos2]);
 
-    	pos3 = posVet(rot2, elem_pos2);
-    	elem_pos3 = rot3[pos3];
+        pos1 = posVet(veta, msg_clara[i]);
+        elem_pos1 = rot1[pos1];
 
-    	printf("\n%c", rot3[pos3]);
-    	msg_cifrada[i] = elem_pos3;
-    	i++;
+        printf("\n%c", rot1[pos1]);
+
+        pos2 = posVet(rot1, elem_pos1);
+        elem_pos2 = rot2[pos2];
+
+        printf("\n%c", rot2[pos2]);
+
+        pos3 = posVet(rot2, elem_pos2);
+        elem_pos3 = rot3[pos3];
+
+
+        printf("\n%c", rot3[pos3]);
+
+
+
+
+        msg_cifrada[i] = elem_pos3;
+
+        i++;
     }
 
     return msg_cifrada;
@@ -233,7 +241,7 @@ int main()
     rot1 = deslocaRotor(rot1, 1);
     printf("\nRotor1:");
     exibeVet(rot1);
-    printf("\Deslocado 1 posicao.");
+    printf("\nDeslocado 1 posicao.");
 
 
 
@@ -241,21 +249,10 @@ int main()
 
 
 
-    char letra = 'd';
-    int posicao = posVet(veta,letra);
-    printf("\npos = %d\n",posicao);
-
-
-    //teste
-    char* msg = (char*)malloc(sizeof(char)*10);
-    msg = 'Oi';
-    int tama;
-    tama = tamMsg(&msg);
-    printf("\ntamanho msg = %d\n",tama);
 
 
 
- 	/*
+    /*
     SubstituicaoRotor1 = geraCifraRotor();
     SubstituicaoRotor2 = geraCifraRotor();
     SubstituicaoRotor3 = geraCifraRotor();
@@ -266,13 +263,15 @@ int main()
     SubstituicaoRotor2 = {'a', 'j', 'd', 'k', 's', 'i', 'r', 'u', 'x', 'b', 'l', 'h', 'w', 't', 'm', 'c', 'q', 'g', 'z', 'n', 'p', 'y', 'f', 'v', 'o', 'e'};
     SubstituicaoRotor3 = {'b', 'd', 'f', 'h', 'j', 'l', 'c', 'p', 'r', 't', 'x', 'v', 'z', 'n', 'y', 'e', 'i', 'w', 'g', 'a', 'k', 'm', 'u', 's', 'q', 'o'};
     SubstituicaoRefletor = {'f', 'v', 'p', 'j', 'i', 'a', 'o', 'y', 'e', 'd', 'r', 'z', 'x', 'w', 'g', 'c', 't', 'k', 'u', 'q', 's', 'b', 'n', 'm', 'h', 'l'};
-	*/
+    */
 
-	char* Mensagem =(char*)malloc(sizeof(char)*10);;
-    Mensagem = 'a';
+    char* Mensagem =(char*)malloc(sizeof(char)*10);;
+    Mensagem = "bom";
 
     int tamMensagem;
-    tamMensagem = tamMsg(&Mensagem);
+    tamMensagem = tamMsg(Mensagem);
+
+    printf("\ntamanho da msg -> %d\n", tamMensagem);
 
     char* msg_cifrada = cifradorEnigma(Mensagem, rot1,rot2,rot3,veta,vetA,tamMensagem);
     exibeVet(msg_cifrada);
