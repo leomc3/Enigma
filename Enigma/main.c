@@ -73,10 +73,12 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
 {
     int i=0,j=0,random1,random2,random3;
     char* vetAux1,* vetAux2,* vetAux3;
-    vetAux1 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    vetAux2 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    vetAux3 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
     char* vetsort[2]; // vetor para atribuir o rotor;
+
+    vetsort[0]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    vetsort[1]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    vetsort[2]  =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+
     vetsort[0]=vet1;
     vetsort[1]=vet2;
     vetsort[2]=vet3;
@@ -86,6 +88,7 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
     random2 = rand()%3;
     random3 = rand()%3;
     }while( (random1 == random2 ) || (random1 == random3) || (random2 == random3) );
+
     printf("\n%d",random1);
     printf("\n%d",random2);
     printf("\n%d",random3);
