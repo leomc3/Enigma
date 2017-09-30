@@ -110,10 +110,37 @@ int tamMsg(char *msg)
 int posVet(char* vet, char letra)
 {
     int i = 0;
-    while (strcmp(vet[i],letra) != 0)
+    while (strcmp(vet[i],letra) == 0)
         i++;
     printf("%d",i);
     return i;
+}
+
+char* geraCifraRotor()
+{
+	char letraAux;
+	int i;
+	int troca;
+
+	char* vetCifra =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+	for(i=0; i< 26; i++)      // cria sequencia de a - z
+	{
+		vetCifra[i] = 97+i;   //97 o decimal ASCII de "a", indo até 97+25
+	}
+
+
+
+    exibeVet(vetCifra);
+	printf("\n\n");
+	for(i=0; i< 26; i++)      //embaralha a sequencia anterior
+	{
+		troca = rand()%26;
+		letraAux = vetCifra[i];
+		vetCifra[i] = vetCifra[troca];
+		vetCifra[troca] = letraAux;
+	}
+
+	return vetCifra;
 }
 
 
@@ -162,8 +189,8 @@ int main()
 
 
     char letra = 'd';
-    int posicao = posVet(rot2,letra);
-    printf("\npos = %d",posicao);
+    //int posicao = posVet(rot2,letra);
+    //printf("\npos = %d",posicao);
 
 
     //teste
@@ -173,6 +200,13 @@ int main()
     tama = tamMsg(&msg);
     printf("%d",tama);
 
+    char* SubstituicaoRotor1 =  (char)malloc(sizeof(char)*TAM_ROTOR);
+    char* SubstituicaoRotor2 =  (char)malloc(sizeof(char)*TAM_ROTOR);
+    char* SubstituicaoRotor3 =  (char)malloc(sizeof(char)*TAM_ROTOR);
+
+    SubstituicaoRotor1 = geraCifraRotor();
+    SubstituicaoRotor2 = geraCifraRotor();
+    SubstituicaoRotor3 = geraCifraRotor();
 
 
 
