@@ -9,17 +9,19 @@
 #define DESLOC3 7
 
 
-/*65 -> A,
- 90 -> Z;
- 97 -> a;
- 122-> z;
-*/
+    /*65 -> A,
+     90 -> Z;
+     97 -> a;
+     122-> z;
+    */
+
+
 
 void exibeVet(char* aux)
 {
     int i=0;
     //printf("\n");
-    for(i=0; i<TAM_ROTOR; i++)
+     for(i=0; (i<TAM_ROTOR )&&( i='\0');i++)
         printf("%c",aux[i]);
     return;
 }
@@ -29,7 +31,7 @@ char* criaRotor(char* vet,int desloc)
     int i,j=0;
     char* vetAux;
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    for(i=desloc; j<TAM_ROTOR; i++) // deu ruim no mod, fiz com if mesmo
+    for(i=desloc;j<TAM_ROTOR;i++) // deu ruim no mod, fiz com if mesmo
     {
         //if (i == TAM_ROTOR-1) i =0;
         vetAux[j] = vet[i%TAM_ROTOR];
@@ -44,7 +46,7 @@ char* deslocaRotor(char* vet,int desloc)
     int i,j=0;
     char* vetAux;
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    for(i=desloc; j<TAM_ROTOR; i++) // deu ruim no mod, fiz com if mesmo
+    for(i=desloc;j<TAM_ROTOR;i++) // deu ruim no mod, fiz com if mesmo
     {
         if (i == TAM_ROTOR) i =0;
         vetAux[j] = vet[i];
@@ -54,26 +56,26 @@ char* deslocaRotor(char* vet,int desloc)
 }
 
 
-void exibeRotores(char* vet1,char* vet2,char* vet3)
-{
+ void exibeRotores(char* vet1,char* vet2,char* vet3)
+ {
 
     printf("\nRotor 1:");
-    exibeVet(vet1);
+     exibeVet(vet1);
 
     printf("\nRotor 2:");
-    exibeVet(vet2);
+     exibeVet(vet2);
 
     printf("\nRotor 3:");
-    exibeVet(vet3);
-    return;
-}
+     exibeVet(vet3);
+     return;
+ }
 
 
 
-void ordemRotor(char* vet1,char* vet2,char* vet3)
+void* ordemRotor(char* vet1,char* vet2,char* vet3)
 {
     int i=0,j=0,random1,random2,random3;
-//   char* vetAux1,* vetAux2,* vetAux3;
+    char* vetAux1,* vetAux2,* vetAux3;
     char* vetsort[3]; // vetor para atribuir o rotor;
 
 
@@ -81,13 +83,11 @@ void ordemRotor(char* vet1,char* vet2,char* vet3)
     vetsort[1]=vet2;
     vetsort[2]=vet3;
 
-    do
-    {
-        random1 = rand()%3;
-        random2 = rand()%3;
-        random3 = rand()%3;
-    }
-    while( (random1 == random2 ) || (random1 == random3) || (random2 == random3) );
+    do{
+    random1 = rand()%3;
+    random2 = rand()%3;
+    random3 = rand()%3;
+    }while( (random1 == random2 ) || (random1 == random3) || (random2 == random3) );
 
     printf("\n%d",random1);
     printf("\n%d",random2);
@@ -97,107 +97,102 @@ void ordemRotor(char* vet1,char* vet2,char* vet3)
     vet2 = vetsort[random2];
     vet3 = vetsort[random3]; // ERRO AQUI.
 
-    //exibeRotores(vet1,vet2,vet3);
+    exibeRotores(vet1,vet2,vet3);
 
     return;
 }
 
 int tamMsg(char *msg)
 {
-    int i;
-    for (i = 0; msg[i] != '\0'; ++i) ;
-    return i;
+   int i;
+   for (i = 0; msg[i] != '\0'; ++i) ;
+   return i;
 }
-
-
-char* geraCifraRotor()
-{
-    char letraAux;
-    int i;
-    int troca;
-
-    char* vetCifra =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    for(i=0; i< 26; i++)      // cria sequencia de a - z
-    {
-        vetCifra[i] = 97+i;   //97 o decimal ASCII de "a", indo até 97+25
-    }
-
-
-
-    printf("\n\n");
-    for(i=0; i< 26; i++)      //embaralha a sequencia anterior
-    {
-        troca = rand()%26;
-        letraAux = vetCifra[i];
-        vetCifra[i] = vetCifra[troca];
-        vetCifra[troca] = letraAux;
-    }
-
-    return vetCifra;
-}
-
-
 
 int posVet(char* vet, char letra)
 {
     int i = 0;
     while (vet[i] != letra)
         i++;
-    printf("\nPOS+1 VET: %d\n",i+1);
-    return i;//pois comeca no 0
+    printf("%d <- pos",i);
+    return i;
+}
+
+char* geraCifraRotor()
+{
+	char letraAux;
+	int i;
+	int troca;
+
+	char* vetCifra =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+	for(i=0; i< 26; i++)      // cria sequencia de a - z
+	{
+		vetCifra[i] = 97+i;   //97 o decimal ASCII de "a", indo até 97+25
+	}
+
+
+
+    exibeVet(vetCifra);
+	printf("\n\n");
+	for(i=0; i< 26; i++)      //embaralha a sequencia anterior
+	{
+		troca = rand()%26;
+		letraAux = vetCifra[i];
+		vetCifra[i] = vetCifra[troca];
+		vetCifra[troca] = letraAux;
+	}
+
+	return vetCifra;
 }
 
 
 
 char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3,char* veta,char*vetA, int tamMensagem)
 {
-    printf("\n");
-    int i =0,j=0,k=0;
-    char* msg_cifrada;
-    msg_cifrada = (char)malloc(sizeof(char)*tamMensagem+1);
-
-
-    int pos1,pos2,pos3;
+	int pos1,pos2,pos3;
     char elem_pos1,elem_pos2,elem_pos3;
 
+    int i =0,j=0,k=0;
+    char* msg_cifrada;
+    msg_cifrada = (char*)malloc(sizeof(char)*tamMensagem);
 
-    while(i < tamMensagem)
+    while(i <= tamMensagem)
     {
-        i = (i%TAM_ROTOR);
+
         deslocaRotor(rot1,1);
-        if (i == 25)
+        j++;
+
+        if (j == 26)
         {
             deslocaRotor(rot2,1);
-            j = (j%26);
+           k++;
+           j=0;
         }
-        if(j == 25)
+        if(k == 26)
+        {
             deslocaRotor(rot3,1);
-
+            k=0;
+    	}
         pos1 = posVet(veta, &msg_clara[i]);
-        printf("\n pos1 %d",pos1);
-        elem_pos1 = rot1[pos1];
-        getchar();
+    	elem_pos1 = rot1[pos1];
 
-        pos2 = posVet(rot1,&elem_pos1);
-        printf("\n pos2 %d",pos2);
-        elem_pos2 = rot2[pos2];
+		printf("\n%c", rot1[pos1]);
 
-        pos3 = posVet(rot2,&elem_pos2);
-        printf("\n pos3 %d",pos3);
-        elem_pos3 = rot2[pos3];
-        getchar();
+   	 	pos2 = posVet(rot1, elem_pos1);
+    	elem_pos2 = rot2[pos2];
 
-        msg_cifrada[k] = elem_pos3;
-        k++;
+    	printf("\n%c", rot2[pos2]);
+
+    	pos3 = posVet(rot2, elem_pos2);
+    	elem_pos3 = rot3[pos3];
+
+    	printf("\n%c", rot3[pos3]);
+    	msg_cifrada[i] = elem_pos3;
+    	i++;
     }
 
     return msg_cifrada;
 }
-
-
-
-
-
 
 
 
@@ -238,7 +233,7 @@ int main()
     rot1 = deslocaRotor(rot1, 1);
     printf("\nRotor1:");
     exibeVet(rot1);
-    printf("\ -> Deslocado 1 posicao.(ok)");
+    printf("\Deslocado 1 posicao.");
 
 
 
@@ -253,33 +248,36 @@ int main()
 
     //teste
     char* msg = (char*)malloc(sizeof(char)*10);
-    //msg = 'Oi';
-    //int tamMensagem;
-    //tamMensagem = tamMsg(&msg);
-    //printf("\ntamanho msg = %d\n",tama);
+    msg = 'Oi';
+    int tama;
+    tama = tamMsg(&msg);
+    printf("\ntamanho msg = %d\n",tama);
 
-    char* SubstituicaoRotor1 =  (char)malloc(sizeof(char)*TAM_ROTOR);
-    char* SubstituicaoRotor2 =  (char)malloc(sizeof(char)*TAM_ROTOR);
-    char* SubstituicaoRotor3 =  (char)malloc(sizeof(char)*TAM_ROTOR);
 
+
+ 	/*
     SubstituicaoRotor1 = geraCifraRotor();
     SubstituicaoRotor2 = geraCifraRotor();
     SubstituicaoRotor3 = geraCifraRotor();
+    */
 
+    /*
+    SubstituicaoRotor1 = {'e', 'k', 'm', 'f', 'l', 'g', 'd', 'q', 'v', 'z', 'n', 't', 'o', 'w', 'y', 'h', 'x', 'u', 's', 'p', 'a', 'i', 'b', 'r', 'c', 'j'};
+    SubstituicaoRotor2 = {'a', 'j', 'd', 'k', 's', 'i', 'r', 'u', 'x', 'b', 'l', 'h', 'w', 't', 'm', 'c', 'q', 'g', 'z', 'n', 'p', 'y', 'f', 'v', 'o', 'e'};
+    SubstituicaoRotor3 = {'b', 'd', 'f', 'h', 'j', 'l', 'c', 'p', 'r', 't', 'x', 'v', 'z', 'n', 'y', 'e', 'i', 'w', 'g', 'a', 'k', 'm', 'u', 's', 'q', 'o'};
+    SubstituicaoRefletor = {'f', 'v', 'p', 'j', 'i', 'a', 'o', 'y', 'e', 'd', 'r', 'z', 'x', 'w', 'g', 'c', 't', 'k', 'u', 'q', 's', 'b', 'n', 'm', 'h', 'l'};
+	*/
 
-//    exibeRotores(SubstituicaoRotor1,SubstituicaoRotor2,SubstituicaoRotor3);
-    //getchar();
-
-
-    char* Mensagem =(char*)malloc(sizeof(char)*10);;
-    Mensagem = 'b';
+	char* Mensagem =(char*)malloc(sizeof(char)*10);;
+    Mensagem = 'a';
 
     int tamMensagem;
     tamMensagem = tamMsg(&Mensagem);
 
     char* msg_cifrada = cifradorEnigma(Mensagem, rot1,rot2,rot3,veta,vetA,tamMensagem);
-    printf("\nMensagem cifrada:\n");
     exibeVet(msg_cifrada);
+
+
     getchar();
     return 0;
 }
