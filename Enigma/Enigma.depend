@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1506794708 source:c:\users\leona\desktop\projetos\enigma\enigma\enigma\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

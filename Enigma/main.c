@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define TAM_ROTOR 26
 #define DESLOC1 22
@@ -29,7 +30,7 @@ char* criaRotor(char* vet,int desloc)
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
     for(i=desloc;j<25;i++) // deu ruim no mod, fiz com if mesmo
     {
-        if (i == TAM_ROTOR) i =0;
+        if (i == TAM_ROTOR-1) i =0;
         vetAux[j] = vet[i];
         j++;
     }
@@ -52,9 +53,59 @@ char* deslocaRotor(char* vet,int desloc)
 }
 
 
+ void exibeRotores(char* vet1,char* vet2,char* vet3)
+ {
+
+    printf("\nRotor 1:");
+     exiveVet(vet1);
+
+    printf("\nRotor 2:");
+     exiveVet(vet2);
+
+    printf("\n Rotor 3:");
+     exiveVet(vet3);
+     return;
+ }
+
+
+
+void* ordemRotor(char* vet1,char* vet2,char* vet3)
+{
+    int i=0,j=0,random1,random2,random3;
+    char* vetAux1,* vetAux2,* vetAux3;
+    vetAux1 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    vetAux2 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    vetAux3 =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    char* vetsort[2]; // vetor para atribuir o rotor;
+    vetsort[0]=vet1;
+    vetsort[1]=vet2;
+    vetsort[2]=vet3;
+
+    do{
+    random1 = rand()%3;
+    random2 = rand()%3;
+    random3 = rand()%3;
+    }while( (random1 == random2 ) || (random1 == random3) || (random2 == random3) );
+    printf("\n%d",random1);
+    printf("\n%d",random2);
+    printf("\n%d",random3);
+    vet1 = vetsort[0];
+    vet2 = vetsort[1];
+    vet3 = vetsort[2];
+
+    exibeRotores(vet1,vet2,vet3);
+
+    getchar();
+    return;
+}
+
+
+
 
 int main()
 {
+
+    srand(time(NULL));
     char *vetA,*veta, *rot1,*rot2,*rot3;
     vetA =  (char*)malloc(sizeof(char)*TAM_ROTOR);
     veta =  (char*)malloc(sizeof(char)*TAM_ROTOR);
@@ -87,6 +138,9 @@ int main()
     rot1 = deslocaRotor(rot1, 1);
     printf("\nRotor1:");
     exiveVet(rot1);
+
+
+    ordemRotor(rot1,rot2,rot3);
 
 
     getchar();
