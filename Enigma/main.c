@@ -91,7 +91,7 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
     printf("\n%d",random3);
     vet1 = vetsort[0];
     vet2 = vetsort[1];
-    vet3 = vetsort[2];
+    vet3 = vetsort[2]; // ERRO AQUI.
 
     exibeRotores(vet1,vet2,vet3);
 
