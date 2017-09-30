@@ -21,6 +21,7 @@ void exiveVet(char* aux)
         printf("%c",aux[i]);
     return;
 }
+
 char* criaRotor(char* vet,int desloc)
 {
     int i,j=0;
@@ -34,6 +35,24 @@ char* criaRotor(char* vet,int desloc)
     }
     return vetAux;
 }
+
+
+char* deslocaRotor(char* vet,int desloc)
+{
+    int i,j=0;
+    char* vetAux;
+    vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
+    for(i=desloc;j<25;i++) // deu ruim no mod, fiz com if mesmo
+    {
+        if (i == TAM_ROTOR) i =0;
+        vetAux[j] = vet[i];
+        j++;
+    }
+    return vetAux;
+}
+
+
+
 int main()
 {
     char *vetA,*veta, *rot1,*rot2,*rot3;
@@ -45,8 +64,10 @@ int main()
 
     for(i=0; i<TAM_ROTOR; i++)
         vetA[i] = iniA+i;
+
     for(i=0; i<TAM_ROTOR; i++)
         veta[i] = inia+i;
+
     //exibe
     printf("\nVetor letras maiusculas:");
     exiveVet(vetA);
@@ -62,6 +83,11 @@ int main()
     exiveVet(rot2);
     printf("\nRotor3:");
     exiveVet(rot3);
+
+    rot1 = deslocaRotor(rot1, 1);
+    printf("\nRotor1:");
+    exiveVet(rot1);
+
 
     getchar();
     return 0;
