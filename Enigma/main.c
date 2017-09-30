@@ -30,8 +30,8 @@ char* criaRotor(char* vet,int desloc)
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
     for(i=desloc;j<TAM_ROTOR;i++) // deu ruim no mod, fiz com if mesmo
     {
-        if (i == TAM_ROTOR-1) i =0;
-        vetAux[j] = vet[i];
+        //if (i == TAM_ROTOR-1) i =0;
+        vetAux[j] = vet[i%TAM_ROTOR];
         j++;
     }
     return vetAux;
