@@ -28,7 +28,7 @@ char* criaRotor(char* vet,int desloc)
     int i,j=0;
     char* vetAux;
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    for(i=desloc;j<25;i++) // deu ruim no mod, fiz com if mesmo
+    for(i=desloc;j<TAM_ROTOR;i++) // deu ruim no mod, fiz com if mesmo
     {
         if (i == TAM_ROTOR-1) i =0;
         vetAux[j] = vet[i];
@@ -43,7 +43,7 @@ char* deslocaRotor(char* vet,int desloc)
     int i,j=0;
     char* vetAux;
     vetAux =  (char*)malloc(sizeof(char)*TAM_ROTOR);
-    for(i=desloc;j<25;i++) // deu ruim no mod, fiz com if mesmo
+    for(i=desloc;j<TAM_ROTOR;i++) // deu ruim no mod, fiz com if mesmo
     {
         if (i == TAM_ROTOR) i =0;
         vetAux[j] = vet[i];
