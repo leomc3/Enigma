@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #define TAM_ROTOR 26
 #define DESLOC1 2
@@ -100,7 +101,24 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
     return;
 }
 
+int tamMsg(char *msg)
+{
+   int i;
+   for (i = 0; msg[i] != '\0'; ++i) ;
+   return i;
+}
 
+int posVet(char* vet, char letra)
+{
+    int i = 0;
+    for (i=0; i<TAM_ROTOR;i++)
+    {
+        if ( strcmp(vet[i],letra) != 0)
+        i++;
+    }
+    printf("%d",i);
+    return;
+}
 
 
 int main()
@@ -121,9 +139,9 @@ int main()
         veta[i] = inia+i;
 
     //exibe
-    printf("\nVetor letras maiusculas:");
+    printf("\nVetora:");
     exiveVet(vetA);
-    printf("\nVetor letras minusculas:");
+    printf("\nVetorA:");
     exiveVet(veta);
 
     rot1 = criaRotor(veta, DESLOC1);
@@ -139,12 +157,25 @@ int main()
     rot1 = deslocaRotor(rot1, 1);
     printf("\nRotor1:");
     exiveVet(rot1);
+    printf("\Deslocado 1 posicao.");
+
 
 
     ordemRotor(rot1,rot2,rot3);
+
+    //teste
+    char* msg = (char*)malloc(sizeof(char)*10);
+    msg = 'Oi';
+    int tama;
+    tama = tamMsg(&msg);
+    printf("%d",tama);
+
+    int posicao = posVet(veta,'d');
+    printf("\npos = %d",posicao);
 
 
 
     getchar();
     return 0;
 }
+
