@@ -143,6 +143,57 @@ char* geraCifraRotor()
 }
 
 
+char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3)
+{
+    int i =0,j=0,k=0;
+    char* msg_cifrada;
+    msg_cifrada = (char)malloc(sizeof(char)*tamMsg(msg_clara));
+    while(msg_clara[i] != '\0')
+    {
+        i = (i%TAM_ROTOR);
+        deslocaRotor(rot1,1);
+        if (i == 25)
+        {
+            deslocaRotor(rot2,1);
+            j = (j%26);
+        }
+        if(j == 25)
+            deslocaRotor(rot3,1);
+
+    msg_cifrada[k] = encontraCrifra(msg_cifrada[k]);
+    k++;
+    }
+
+    return msg_cifrada;
+
+
+}
+
+
+int encontraCrifra(char* letra, char*veta, char* vetA, char* rot1,char* rot2,char* rot3)
+{
+    int pos1,pos2,pos3;
+    char* elem_pos1,elem_pos2,elem_pos3;
+
+    pos1 = posVet(veta,letra);
+    elem_pos1 = rot1[pos1];
+
+    pos2 = posVet(rot1,elem_pos1);
+    elem_pos2 = rot2[pos2];
+
+    pos3 = posVet(rot2,elem_pos2);
+    elem_pos3 = rot2[pos3];
+
+    return elem_pos3;
+}
+
+
+
+
+
+
+
+
 int main()
 {
 
@@ -216,36 +267,4 @@ int main()
     exibeVet(msg_cifrada);
     getchar();
     return 0;
-}
-
-char* cifradorEnigma(char* msg_clara, char* rot1,char* rot2,char* rot3)
-{
-    int i =0,j=0,k=0;
-    char* msg_cifrada;
-    msg_cifrada = (char)malloc(sizeof(char)*tamMsg(msg_clara))
-    while(msg_teste[i] != '\0')
-    {
-        i = (i%TAM_ROTOR)
-            deslocaRotor(rot1,1);
-        if (i == 25)
-        {
-            deslocaRotor(rot2,1);
-            j = (j%26);
-        }
-        if(j == 25)
-            deslocaRotor(rot3,1);
-
-    msg_cifrada[k] = encontraCrifra(msg_cifrada[k])
-
-    }
-
-    return msg_cifrada;
-
-
-}
-
-
-int encontraCrifra(char* rot1,char* rot2,char* rot3,char* SubstituicaoRotor1,char* SubstituicaoRotor2,char* SubstituicaoRotor3, int vezes)
-{
-
 }
