@@ -15,7 +15,7 @@
      122-> z;
     */
 
-void exiveVet(char* aux)
+void exibeVet(char* aux)
 {
     int i=0;
     //printf("\n");
@@ -58,13 +58,13 @@ char* deslocaRotor(char* vet,int desloc)
  {
 
     printf("\nRotor 1:");
-     exiveVet(vet1);
+     exibeVet(vet1);
 
     printf("\nRotor 2:");
-     exiveVet(vet2);
+     exibeVet(vet2);
 
     printf("\nRotor 3:");
-     exiveVet(vet3);
+     exibeVet(vet3);
      return;
  }
 
@@ -97,7 +97,6 @@ void* ordemRotor(char* vet1,char* vet2,char* vet3)
 
     exibeRotores(vet1,vet2,vet3);
 
-    getchar();
     return;
 }
 
@@ -111,13 +110,10 @@ int tamMsg(char *msg)
 int posVet(char* vet, char letra)
 {
     int i = 0;
-    for (i=0; i<TAM_ROTOR;i++)
-    {
-        if ( strcmp(vet[i],letra) != 0)
+    while (strcmp(vet[i],letra) != 0)
         i++;
-    }
     printf("%d",i);
-    return;
+    return i;
 }
 
 
@@ -140,28 +136,35 @@ int main()
 
     //exibe
     printf("\nVetora:");
-    exiveVet(vetA);
+    exibeVet(vetA);
     printf("\nVetorA:");
-    exiveVet(veta);
+    exibeVet(veta);
 
     rot1 = criaRotor(veta, DESLOC1);
     rot2 = criaRotor(veta, DESLOC2);
     rot3 = criaRotor(veta, DESLOC3);
     printf("\nRotor1:");
-    exiveVet(rot1);
+    exibeVet(rot1);
     printf("\nRotor2:");
-    exiveVet(rot2);
+    exibeVet(rot2);
     printf("\nRotor3:");
-    exiveVet(rot3);
+    exibeVet(rot3);
 
     rot1 = deslocaRotor(rot1, 1);
     printf("\nRotor1:");
-    exiveVet(rot1);
+    exibeVet(rot1);
     printf("\Deslocado 1 posicao.");
 
 
 
     ordemRotor(rot1,rot2,rot3);
+
+
+
+    char letra = 'd';
+    int posicao = posVet(rot2,letra);
+    printf("\npos = %d",posicao);
+
 
     //teste
     char* msg = (char*)malloc(sizeof(char)*10);
@@ -170,8 +173,6 @@ int main()
     tama = tamMsg(&msg);
     printf("%d",tama);
 
-    int posicao = posVet(veta,'d');
-    printf("\npos = %d",posicao);
 
 
 
